@@ -1,3 +1,5 @@
 packages:
   - "common"
   - "webhook-service"
+  - "orchestrator-service"
+  - "booking-service"

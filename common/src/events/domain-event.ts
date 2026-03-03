@@ -5,5 +5,4 @@ export abstract class DomainEvent {
   constructor(occurredAt: Date) {
     this.occurredAt = occurredAt;
   }
-
 }

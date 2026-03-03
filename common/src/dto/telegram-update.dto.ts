@@ -46,6 +46,45 @@ class MessageDto {
   date!: number;
 }
 
+class CallbackMessageDto {
+  @ValidateNested()
+  @Type(() => ChatDto)
+  chat!: ChatDto;
+
+  @IsNumber()
+  date!: number;
+}
+
+class CallbackQueryDto {
+  @IsString()
+  id!: string;
+
+  @ValidateNested()
+  @Type(() => FromDto)
+  from!: FromDto;
+
+  @ValidateNested()
+  @Type(() => CallbackMessageDto)
+  message!: CallbackMessageDto;
+
+  @IsOptional()
+  @IsString()
+  data?: string;
+}
+
+class InlineQueryDto {
+  @IsString()
+  id!: string;
+
+  @ValidateNested()
+  @Type(() => FromDto)
+  from!: FromDto;
+
+  @IsOptional()
+  @IsString()
+  query?: string;
+}
+
 export class TelegramUpdateDto {
   @IsNumber()
   update_id!: number;
@@ -54,4 +93,14 @@ export class TelegramUpdateDto {
   @ValidateNested()
   @Type(() => MessageDto)
   message?: MessageDto;
+
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => CallbackQueryDto)
+  callback_query?: CallbackQueryDto;
+
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => InlineQueryDto)
+  inline_query?: InlineQueryDto;
 }
