@@ -72,6 +72,10 @@ importers:
       class-validator:
         specifier: ^0.14.3
         version: 0.14.3
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.7
+        version: 22.19.11
 
   orchestrator-service:
     dependencies:
