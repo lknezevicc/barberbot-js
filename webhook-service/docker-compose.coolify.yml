@@ -1,0 +1,25 @@
+services:
+  webhook-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      PORT: 3000
+      RABBITMQ_HOST: ${RABBITMQ_HOST:-amqp://rabbitmq:5672}
+      RABBITMQ_NETWORK: ${RABBITMQ_NETWORK:-rabbitmq}
+      # REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      APP_ENABLED: ${APP_ENABLED:-true}
+      TELEGRAM_WEBHOOK_SECRET: ${TELEGRAM_WEBHOOK_SECRET:-}
+      ALLOW_INSECURE_WEBHOOK_SECRET: ${ALLOW_INSECURE_WEBHOOK_SECRET:-false}
+      WEBHOOK_RATE_LIMIT_IP_PER_MINUTE: ${WEBHOOK_RATE_LIMIT_IP_PER_MINUTE:-300}
+      WEBHOOK_RATE_LIMIT_USER_PER_MINUTE: ${WEBHOOK_RATE_LIMIT_USER_PER_MINUTE:-20}
+      WEBHOOK_IDEMPOTENCY_TTL_SECONDS: ${WEBHOOK_IDEMPOTENCY_TTL_SECONDS:-300}
+    networks:
+      - rabbitmq
+
+networks:
+  rabbitmq:
+    name: ${RABBITMQ_NETWORK:-rabbitmq}
+    external: true
