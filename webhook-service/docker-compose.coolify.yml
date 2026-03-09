@@ -8,7 +8,7 @@ services:
     environment:
       PORT: 3000
       RABBITMQ_HOST: ${RABBITMQ_HOST:-amqp://rabbitmq:5672}
-      # REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
       APP_ENABLED: ${APP_ENABLED:-true}
       TELEGRAM_WEBHOOK_SECRET: ${TELEGRAM_WEBHOOK_SECRET:-}
       ALLOW_INSECURE_WEBHOOK_SECRET: ${ALLOW_INSECURE_WEBHOOK_SECRET:-false}
