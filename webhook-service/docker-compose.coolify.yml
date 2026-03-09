@@ -17,10 +17,13 @@ services:
       WEBHOOK_IDEMPOTENCY_TTL_SECONDS: ${WEBHOOK_IDEMPOTENCY_TTL_SECONDS:-300}
     networks:
       - rabbitmq
+      - coolify
     ports:
       - '3000:3000'
 
 networks:
   rabbitmq:
     name: ${RABBITMQ_NETWORK:-rabbitmq}
+    external: true
+  coolify:
     external: true
