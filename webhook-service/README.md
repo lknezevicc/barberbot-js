@@ -1,12 +1,12 @@
 # webhook-service
 
-Webhook ulazna točka za Telegram update poruke.
+Webhook entry point for Telegram updates.
 
 ## Security
 
-- Validira header `x-telegram-bot-api-secret-token`.
-- Podržava gašenje endpointa preko `APP_ENABLED=false` (vraća 204).
-- Usporedba secret tokena radi se timing-safe usporedbom.
+- Validates the `x-telegram-bot-api-secret-token` header.
+- The endpoint can be switched off with `APP_ENABLED=false` (it then returns 204).
+- The secret token is compared with a timing-safe comparison.
 
 ## Rate limiting
 
@@ -15,7 +15,7 @@ Webhook ulazna točka za Telegram update poruke.
 
 ## Flow
 
-1. Telegram šalje update na `POST /telegram/webhook`.
-2. Servis validira secret i rate limit.
-3. Update mapira u `UserMessageEvent`.
-4. Event se publisha u RabbitMQ exchange.
+1. Telegram sends an update to `POST /telegram/webhook`.
+2. The service validates the secret and the rate limit.
+3. It maps the update to a `UserMessageEvent`.
+4. The event is published to the RabbitMQ exchange.
